@@ -1,42 +1,42 @@
 <div class="body">
   <div class="container">
     <h2>Employee Form</h2>
-    <form id="empForm">
+    <form id="empForm" [formGroup]="userForm">
 
       <div class="row">
-        <div class="col">
+        <!-- <div class="col">
           <label for="empid">Emp ID</label>
-          <input type="text" id="empid" name="empid" required placeholder="e.g. E001">
-        </div>
+          <input type="text" id="empid" formControlName="userId"  required placeholder="e.g. E001">
+        </div> -->
         <div class="col">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" required placeholder="Full name">
+          <input type="text" id="name" formControlName="name" required placeholder="Full name">
         </div>
       </div>
 
       <div>
         <label for="city">City</label>
-        <input type="text" id="city" name="city" placeholder="City">
+        <input type="text" id="city" formControlName="city" placeholder="City">
       </div>
 
       <div>
         <label for="address">Address</label>
-        <textarea id="address" name="address" rows="3" placeholder="Street, area, landmark..."></textarea>
+        <textarea id="address" formControlName="address" rows="3" placeholder="Street, area, landmark..."></textarea>
       </div>
 
       <div class="row">
         <div class="col">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="name@example.com">
+          <input type="email" id="email" formControlName="email" placeholder="name@example.com">
         </div>
         <div class="col">
           <label for="pin">PIN</label>
-          <input type="text" id="pin" name="pin" inputmode="numeric" pattern="\d{6}" placeholder="6-digit PIN">
+          <input type="text" id="pin" formControlName="pin" placeholder="6-digit PIN">
         </div>
       </div>
 
       <div class="actions">
-        <button type="submit">Save</button>
+        <button type="submit" (click)="onSave()">Save</button>
       </div>
 
     </form>
@@ -54,18 +54,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <!-- <td>1</td>
-        <td>John Doe</td>
-        <td>Mumbai</td>
-        <td>john@example.com</td> -->
-      </tr>
-      <tr>
-        <!-- <td>2</td>
-        <td>Jane Smith</td>
-        <td>Delhi</td>
-        <td>jane@example.com</td> -->
-      </tr>
+       @for (item of userList; track $index) {
+        <tr>
+        <td>{{$index+1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.city}}</td>
+        <td>{{item.email}}</td>
+        </tr>
+       }
     </tbody>
   </table>
   </div>
